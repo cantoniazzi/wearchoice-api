@@ -18,6 +18,7 @@
   "homepage": "https://github.com/cantoniazzi/wearchoice-api#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "dotenv": "^5.0.0",
     "express": "^4.16.2",
     "morgan": "^1.9.0",
     "pg": "^7.4.1",
