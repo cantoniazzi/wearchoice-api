@@ -21,7 +21,6 @@
     "express": "^4.16.2",
     "morgan": "^1.9.0",
     "pg": "^7.4.1",
-    "sequelize": "^4.32.6",
-    "sequelize-cli": "^3.2.0"
+    "sequelize": "^4.32.6"
   }
 }

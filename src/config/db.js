@@ -21,6 +21,6 @@ db.userSocialMedia = require('../models/userSocialMedia.js')(sequelize, Sequeliz
 
 //Relations
 db.userSocialMedia.belongsTo(db.user);
-db.user.hasMany(db.userSocialMedianode_modules/.bin/sequelize init);
+db.user.hasMany(db.userSocialMedia);
 
 module.exports = db;
