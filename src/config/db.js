@@ -9,13 +9,18 @@ const sequelize = new Sequelize(env.DATABASE_NAME, env.DATABASE_USERNAME, env.DA
     underscored: true
   }
 });
-// Connect all the models/tables in the database to a db object,
-//so everything is accessible via one object
+
 const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-//Models/tables
+//Models - tables
+db.user = require('../models/user.js')(sequelize, Sequelize);
+db.userSocialMedia = require('../models/userSocialMedia.js')(sequelize, Sequelize);
+
+//Relations
+db.userSocialMedia.belongsTo(db.user);
+db.user.hasMany(db.userSocialMedia);
 
 module.exports = db;
