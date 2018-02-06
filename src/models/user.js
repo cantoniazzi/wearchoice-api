@@ -8,23 +8,25 @@ module.exports = (sequelize, DataTypes) => {
             },
             uuid: {
                 type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4
             },
             firstName: {
                 type: DataTypes.STRING(35),
+                field: 'first_name'
             },
             lastName: {
-                type: DataTypes.STRING(35)
+                type: DataTypes.STRING(35),
+                field: 'last_name'
             },
             email: {
                 type: DataTypes.STRING(250)
-            },
-            tags: {
-                type: DataTypes.STRING
             }
         }, 
         { 
-            freezeTableName: true, 
-            timestamps: true
+            freezeTableName: true,
+            tableName: 'user',  
+            timestamps: true,
+            underscored: true
         }
     );
     return User;
