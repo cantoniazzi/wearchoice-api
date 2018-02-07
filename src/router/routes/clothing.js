@@ -1,0 +1,67 @@
+'use strict';
+
+module.exports = (app, db) => {
+
+    // list
+    app.get('/clothing', (req, res) => {
+        db.clothing.findAll()
+            .then(clothing => {
+                res.json(clothing);
+            });
+    });
+
+    // retrieve
+    app.get('/clothing/:id', (req, res) => {
+        const id = req.params.id;
+        db.clothing.find({
+            where: { uuid: id}
+        })
+        .then(link => {
+            res.json(link);
+        });
+      });
+
+    // create
+    app.post('/clothing', (req, res) => {
+        const description = req.body.description;
+        const expires_at = req.body.expires_at;
+        const image = req.body.image;
+        const userId = req.body.userId;
+        db.clothing.create({
+            name: name,
+            expires_at:expires_at,
+            image:image,
+            userId:userId,
+        })
+        .then(newlink => {
+            res.json(newlink);
+        })
+    });
+
+    // update
+    app.patch('/clothing/:id', (req, res) => {
+        const id = req.params.id;
+        const updates = req.body.updates;
+        db.clothing.find({
+        where: { uuid: id }
+        })
+        .then(clothing => {
+            return clothing.updateAttributes(updates)
+        })
+        .then(updatedclothing => {
+            res.json(updatedclothing);
+        });
+    });
+
+    // destroy
+    app.delete('/link/:id', (req, res) => {
+        const id = req.params.id;
+        db.clothing.destroy({
+        where: { uuid: id }
+        })
+        .then(deletedclothing => {
+            res.json(deletedclothing);
+        });
+    });
+
+};
