@@ -2,14 +2,21 @@
 
 const Sequelize = require('sequelize');
 const env = require('./env');
-const sequelize = new Sequelize(env.DATABASE_NAME, env.DATABASE_USERNAME, env.DATABASE_PASSWORD, {
-  host: env.DATABASE_HOST,
-  port: env.DATABASE_PORT,
-  dialect: env.DATABASE_DIALECT || 'postgres',
-  define: {
-    underscored: true
-  }
-});
+
+if(process.env.NODE_ENV === 'development'){
+  const sequelize = new Sequelize(env.DATABASE_NAME, env.DATABASE_USERNAME, env.DATABASE_PASSWORD, {
+    host: env.DATABASE_HOST,
+    port: env.DATABASE_PORT,
+    dialect: env.DATABASE_DIALECT || 'postgres',
+    define: {
+      underscored: true
+    }
+  });
+}
+else{
+  const sequelize = new Sequelize(process.env.DATABASE_URL, {dialect: 'postgres'});
+}
+
 
 const db = {};
 
