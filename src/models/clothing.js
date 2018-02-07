@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
             description: {
                 type: DataTypes.STRING(250)
             },
-            expires_at: {
+            expiresAt: {
                 type: DataTypes.DATE,
                 field: 'expires_at'
             },
