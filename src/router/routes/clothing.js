@@ -16,8 +16,8 @@ module.exports = (app, db) => {
         db.clothing.find({
             where: { uuid: id}
         })
-        .then(link => {
-            res.json(link);
+        .then(clothing => {
+            res.json(clothing);
         });
       });
 
@@ -33,8 +33,8 @@ module.exports = (app, db) => {
             image:image,
             userId:userId,
         })
-        .then(newlink => {
-            res.json(newlink);
+        .then(newClothing => {
+            res.json(newClothing);
         })
     });
 
@@ -54,7 +54,7 @@ module.exports = (app, db) => {
     });
 
     // destroy
-    app.delete('/link/:id', (req, res) => {
+    app.delete('/clothing/:id', (req, res) => {
         const id = req.params.id;
         db.clothing.destroy({
         where: { uuid: id }
