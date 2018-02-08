@@ -3,6 +3,13 @@
 module.exports = (app, db) => {
 
     // list
+    app.get('/feed', (req, res) => {
+        db.clothing.findAll()
+            .then(clothing => {
+                res.json(clothing);
+            });
+    });
+
     app.get('/clothing', (req, res) => {
         db.clothing.findAll()
             .then(clothing => {
