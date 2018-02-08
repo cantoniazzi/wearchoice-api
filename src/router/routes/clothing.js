@@ -2,12 +2,17 @@
 
 module.exports = (app, db) => {
 
+
     // list
     app.get('/feed', (req, res) => {
-        db.clothing.findAll()
-            .then(clothing => {
-                res.json(clothing);
-            });
+        db.sequelize.query(
+            `SELECT clothing.*, count(vote.value) AS total_votes FROM clothing
+            LEFT JOIN vote on clothing.id = vote.clothing_id GROUP BY clothing.id`,
+            { type: db.sequelize.QueryTypes.SELECT}
+        )
+        .then(clothing => {
+            res.json(clothing);
+        });
     });
 
     app.get('/clothing', (req, res) => {
