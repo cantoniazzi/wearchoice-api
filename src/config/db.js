@@ -27,6 +27,7 @@ db.user = require('../models/user.js')(sequelize, Sequelize);
 db.userSocialMedia = require('../models/userSocialMedia.js')(sequelize, Sequelize);
 db.clothing = require('../models/clothing.js')(sequelize, Sequelize);
 db.comment = require('../models/comment.js')(sequelize, Sequelize);
+db.vote = require('../models/vote.js')(sequelize, Sequelize);
 
 //Relations
 db.userSocialMedia.belongsTo(db.user);
@@ -37,5 +38,8 @@ db.user.hasMany(db.clothing);
 
 db.user.hasMany(db.comment);
 db.comment.belongsTo(db.user);
+
+db.user.hasMany(db.vote);
+db.vote.belongsTo(db.user);
 
 module.exports = db;

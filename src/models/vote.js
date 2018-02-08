@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Comment = sequelize.define('Comment', 
+    const Vote = sequelize.define('Vote', 
         {
             id: {
                 type: DataTypes.INTEGER,
@@ -10,8 +10,9 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.UUID,
                 defaultValue: DataTypes.UUIDV4
             },
-            description: {
-                type: DataTypes.STRING(250)
+            value: {
+                type: DataTypes.INTEGER,
+                defaultValue: 0
             },
             userId: {
                 type: DataTypes.INTEGER,
@@ -26,10 +27,10 @@ module.exports = (sequelize, DataTypes) => {
         }, 
         { 
             freezeTableName: true,
-            tableName: 'comment',  
+            tableName: 'vote',  
             timestamps: true,
             underscored: true
         }
     );
-    return Comment;
+    return Vote;
 };
