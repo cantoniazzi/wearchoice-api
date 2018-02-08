@@ -7,13 +7,26 @@ module.exports = (app, db) => {
         const userId = req.body.userId;
         const clothingId = req.body.clothingId;
 
-        db.vote.create({
-            value: value,
-            userId: userId,
-            clothingId: clothingId
+        db.vote.findOne({
+            where: {
+                userId: userId,
+                clothingId: clothingId
+            }
         })
-        .then(newVote => {
-            res.json(newVote);
+        .then(vote => {
+            if(!vote){
+                db.vote.create({
+                    value: value,
+                    userId: userId,
+                    clothingId: clothingId
+                })
+                .then(newVote => {
+                    res.json(newVote);
+                });
+            }
+            else {
+                res.json({created: false});
+            }
         })
     });
 
