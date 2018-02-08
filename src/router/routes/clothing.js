@@ -26,7 +26,7 @@ module.exports = (app, db) => {
         .then(clothing => {
             res.json(clothing);
         });
-      });
+    });
 
     // create
     app.post('/clothing', (req, res) => {
@@ -35,14 +35,14 @@ module.exports = (app, db) => {
         const image = req.body.image;
         const userId = req.body.userId;
         db.clothing.create({
-            name: name,
-            expires_at:expires_at,
-            image:image,
-            userId:userId,
+            description: description,
+            expires_at: expires_at,
+            image: image,
+            userId: userId,
         })
         .then(newClothing => {
             res.json(newClothing);
-        })
+        });
     });
 
     // update
